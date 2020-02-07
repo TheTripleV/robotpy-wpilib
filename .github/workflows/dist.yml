@@ -8,7 +8,7 @@ jobs:
   ping-pyfrc:
     runs-on: ubuntu-latest
     # needs: [check, build]
-    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
 
     steps:
     - name: Ping pyfrc
