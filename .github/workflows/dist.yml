@@ -38,7 +38,7 @@ jobs:
       #       -H 'Accept: application/vnd.github.everest-preview+json' \
       #       -u ${{ secrets.PYFRC_ACCESS_TOKEN }} \
       #       --data '{"event_type": "tag", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
-      uses: peter-evans/repository-dispatch@v1
+      uses: peter-evans/repository-dispatch@v1.0.0
       with:
         token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
         respository: TheTripleV/pyfrc
