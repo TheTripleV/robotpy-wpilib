@@ -4,41 +4,19 @@ name: dist
 on: [push, pull_request]
 
 jobs:
-  # check:
-  #   runs-on: ubuntu-latest
-    
-  #   steps:
-  #   - uses: actions/checkout@v1
-  #   - uses: actions/setup-python@v1
-  #     with:
-  #       python-version: 3.8
-  #   - name: Black
-  #     run: |
-  #       python -m pip install black
-  #       black --check --diff  .
-
-  # build:
-  #   needs: [check]
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - name: Install build dependencies
-  #     run: |
-  #       echo "Placeholder done"
 
   ping-pyfrc:
     runs-on: ubuntu-latest
-    # needs: [check, build]
-    # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    needs: [check, build]
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
 
     steps:
-    - name: Repository Dispatch
-      uses: peter-evans/repository-dispatch@v1.0.0
-      with:
-        token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
-        respository: "TheTripleV/pyfrc"
-        event-type: "tag"
-        client-payload: '{ "repository": "$GITHUB_REPOSITORY", "package_name": "wpilib"}'
+    - name: Ping pyfrc
+      run: |
+        curl -X POST https://api.github.com/repos/TheTripleV/pyfrc/dispatches \
+            -H 'Accept: application/vnd.github.everest-preview+json' \
+            -u TheTripleV:${{ secrets.PYFRC_ACCESS_TOKEN }} \
+            --data '{"event_type": "tag", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
 
 
   # publish-pypi:
