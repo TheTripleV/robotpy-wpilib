@@ -19,38 +19,12 @@ jobs:
 
   build:
     needs: [check]
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest]
-        python_version: [3.6, 3.7, 3.8]
-        architecture: [x86, x64]
-        exclude:
-        - os: macos-latest
-          architecture: x86
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python_version }}
-        architecture: ${{ matrix.architecture }}
-
     - name: Install build dependencies
       run: |
-        python -m pip install 'robotpy-build>=2020.1.2'
-        python -m robotpy_build build-dep --install
-
-    - name: Build wheel
-      run: python setup.py bdist_wheel
-      env:
-        RPYBUILD_PARALLEL: 1
-    
-    - uses: actions/upload-artifact@v1
-      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-      with:
-        name: "dist-py${{ matrix.python_version }}-${{ matrix.os }}-${{ matrix.architecture }}"
-        path: dist
+        echo "Placeholder done"
 
   ping-pyfrc:
     runs-on: ubuntu-latest
