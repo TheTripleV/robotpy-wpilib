@@ -32,12 +32,7 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
 
     steps:
-    - name: Ping pyfrc
-      # run: |
-      #   curl -X POST https://api.github.com/repos/TheTripleV/pyfrc/dispatches \
-      #       -H 'Accept: application/vnd.github.everest-preview+json' \
-      #       -u ${{ secrets.PYFRC_ACCESS_TOKEN }} \
-      #       --data '{"event_type": "tag", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
+    - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1.0.0
       with:
         token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
