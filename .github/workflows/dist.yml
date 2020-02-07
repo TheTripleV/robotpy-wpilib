@@ -40,7 +40,7 @@ jobs:
       #       --data '{"event_type": "tag", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets/PYFRC_ACCESS_TOKEN }}
+        token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
         respository: TheTripleV/pyfrc
         event-type: tag
         client-payload: '{ "repository": "$GITHUB_REPOSITORY", "package_name": "wpilib"}'
