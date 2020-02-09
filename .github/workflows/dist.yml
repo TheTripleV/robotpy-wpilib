@@ -12,10 +12,10 @@ jobs:
 
     steps:
     - name: Get Latest Tag
-        id: latesttag
-        uses: "WyriHaximus/github-action-get-previous-tag@master"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      id: latesttag
+      uses: "WyriHaximus/github-action-get-previous-tag@master"
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
