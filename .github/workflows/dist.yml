@@ -23,7 +23,7 @@ jobs:
         token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
         repository: TheTripleV/pyfrc
         event-type: tag
-        client-payload: '{"package_name": "wpilib", "package_version": ${{ steps.latesttag.outputs.tag }}}'
+        client-payload: '{"package_name": "wpilib", "package_version": "${{ steps.latesttag.outputs.tag }}"}'
         # steps:
     # - name: Ping pyfrc
     #   run: |
