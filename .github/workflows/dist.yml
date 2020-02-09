@@ -16,12 +16,12 @@ jobs:
       run: |
         export CURR_TAG=`awk -F'/' '{ print $NF }' <<< ${{ github.event.ref }}`
         echo "::set-output name=tag::$CURR_TAG"
-    - uses: actions/checkout@v1
-    - name: Get Latest Tag
-      id: latesttag
-      uses: "WyriHaximus/github-action-get-previous-tag@master"
-      env:
-        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    # - uses: actions/checkout@v1
+    # - name: Get Latest Tag
+    #   id: latesttag
+    #   uses: "WyriHaximus/github-action-get-previous-tag@master"
+    #   env:
+    #     GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
