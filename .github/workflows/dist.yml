@@ -11,6 +11,7 @@ jobs:
     # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
 
     steps:
+    - uses: actions/checkout@v1
     - name: Get Latest Tag
       id: latesttag
       uses: "WyriHaximus/github-action-get-previous-tag@master"
