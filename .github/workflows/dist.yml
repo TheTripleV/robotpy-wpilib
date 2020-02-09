@@ -11,15 +11,14 @@ jobs:
     # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
 
     steps:
-    - name: Ping pyfrc
+    - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
-        repository: TheTripleV/pyfrc
-        "event-type": "tag"
-        "client-payload": '{"repository": "'"$GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
-
-    # steps:
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        repository: username/my-repo
+        event-type: my-event
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        # steps:
     # - name: Ping pyfrc
     #   run: |
     #     curl -X POST https://api.github.com/repos/TheTripleV/pyfrc/dispatches \
