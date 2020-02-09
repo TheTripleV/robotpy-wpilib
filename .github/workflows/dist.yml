@@ -16,6 +16,7 @@ jobs:
       run: |
         export CURR_TAG=`awk -F'/' '{ print $NF }' <<< ${{ github.event.ref }}`
         echo "::set-output name=tag::$CURR_TAG"
+        echo "Version Found: $CURR_TAG"
     # - uses: actions/checkout@v1
     # - name: Get Latest Tag
     #   id: latesttag
