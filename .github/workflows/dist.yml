@@ -16,8 +16,8 @@ jobs:
       with:
         token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
         repository: TheTripleV/pyfrc
-        event-type: tag
-        client-payload: '{"repository": "'"$GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
+        "event-type": "tag"
+        "client-payload": '{"repository": "'"$GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
 
     # steps:
     # - name: Ping pyfrc
