@@ -11,6 +11,11 @@ jobs:
     # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
 
     steps:
+    - name: Get Tag
+      id: currtag
+      run: |
+        export CURR_TAG = `awk -F'/' '{ print $NF }' <<< ${{ github.event.ref }}`
+        echo "::set-output name=tag::$CURR_TAG"
     - uses: actions/checkout@v1
     - name: Get Latest Tag
       id: latesttag
@@ -23,7 +28,7 @@ jobs:
         token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
         repository: TheTripleV/pyfrc
         event-type: tag
-        client-payload: '{"package_name": "wpilib", "package_version": "${{ steps.latesttag.outputs.tag }}"}'
+        client-payload: '{"package_name": "wpilib", "package_version": "${{ steps.currtag.outputs.tag }}"}'
         # steps:
     # - name: Ping pyfrc
     #   run: |
@@ -101,3 +106,5 @@ jobs:
   #     with:
   #       user: __token__
   #       password: ${{ secrets.pypi_password }}
+
+  # echo "::set-env name=CURR_TAG::$CURR_TAG"
