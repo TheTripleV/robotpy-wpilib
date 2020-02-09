@@ -11,13 +11,18 @@ jobs:
     # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
 
     steps:
+    - name: Get Latest Tag
+        id: latesttag
+        uses: "WyriHaximus/github-action-get-previous-tag@master"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
         repository: TheTripleV/pyfrc
         event-type: tag
-        client-payload: '{"repository": "TheTripleV/robotpy-wpilib", "package_name": "wpilib"}'
+        client-payload: '{"package_name": "wpilib", "package_version": ${{ steps.latesttag.outputs.tag }}}'
         # steps:
     # - name: Ping pyfrc
     #   run: |
