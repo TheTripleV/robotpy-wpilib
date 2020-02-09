@@ -15,7 +15,8 @@ jobs:
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
-        event-type: "tag"
+        repository: TheTripleV/pyfrc
+        event-type: tag
         client-payload: '{"repository": "'"$GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
 
     # steps:
