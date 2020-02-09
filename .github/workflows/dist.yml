@@ -16,7 +16,7 @@ jobs:
       with:
         token: ${{ secrets.REPO_ACCESS_TOKEN }}
         repository: username/my-repo
-        event-type: my-event
+        event-type: tag
         client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
         # steps:
     # - name: Ping pyfrc
