@@ -14,7 +14,7 @@ jobs:
     - name: Ping pyfrc
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.PYFRC_ACESS_TOKEN }}
+        token: ${{ secrets.PYFRC_ACCESS_TOKEN }}
         event-type: tag
         client-payload: '{"repository": "'"GITHUB_REPOSITORY"'", "package_name": "wpilib"}}'
 
