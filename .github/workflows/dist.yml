@@ -47,6 +47,12 @@ jobs:
       env:
         RPYBUILD_PARALLEL: 1
         RPYBUILD_STRIP_LIBPYTHON: 1
+
+    - name: Test Import
+      run: |
+        pip install "dist-py${{ matrix.python_version }}-${{ matrix.os }}-${{ matrix.architecture }}.whl"
+        cd ..
+        python -c "import wpilib"
     
     - uses: actions/upload-artifact@v1
       if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
