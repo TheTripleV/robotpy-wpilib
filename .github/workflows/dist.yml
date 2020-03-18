@@ -66,6 +66,13 @@ jobs:
         python-version: ${{ matrix.python_version }}
         architecture: ${{ matrix.architecture }}
 
+    - name: inst stuff
+      run: |
+        python -m pip install "robotpy-build>=2020.1.10"
+        python -m pip install "robotpy-wpiutil"
+        python -m pip install "pyntcore"
+        python -m pip install "robotpy-hal"
+
     - name: Build wheel
       shell: bash
       run: pip wheel --no-deps -v -w dist sdist/*
